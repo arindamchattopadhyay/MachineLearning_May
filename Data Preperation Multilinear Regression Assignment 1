@@ -1,0 +1,21 @@
+# Reading the input
+import ast,sys
+input_str = sys.stdin.read()
+input_list = ast.literal_eval(input_str)
+# Storing the names in a variable 'name'
+name = input_list[0]
+# Storing the responses in a variable 'repsonse'
+response = input_list[1]
+
+# Importing pandas and converting the read lists to a dataframe. You can print
+# the dataframe and run the code to see what it will look like
+import pandas as pd 
+df = pd.DataFrame({'Name': name,'Response': response})
+
+# Write your code here
+df['Response']=df['Response'].replace({'No': 0, 'Yes': 1,'maybe':0.5,'yes':1,'no':0,'Maybe':0.5})  
+#df['Response']=df['Response'].map({'yes':1,'maybe':0.5,'no':0}) 
+df['Response'] = df['Response'].fillna(0)
+
+
+print(df)
